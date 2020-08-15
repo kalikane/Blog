@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+ <!-- Search Posts results -->
+    <section class="latest-posts"> 
+      <div class="container">
+        <header> 
+            <h2>This is the results of your search</h2>
+        </header>
+        <div class="row">
+        {% for post in queryset  %}
+          <div class="post col-md-4">
+            <div class="post-thumbnail"><a href="{{post.get_absolute_url}}"><img src= "{{post.thumbnail.url}}" alt="..." class="img-fluid"></a>
+            </div>
+            <div class="post-details">
+              <div class="post-meta d-flex justify-content-between">
+                <div class="date">{{post.timestamp}}</div>
+                <div class="category">
+                  {% for category in post.categories.all %}
+                    <a href="{{post.get_absolute_url}}">{{category.title}}</a>
+                  {% endfor %}               
+                </div>
+              </div><a href="#">
+                <h3 class="h4">{{post.title}}</h3></a>
+              <p class="text-muted">{{post.overview}}</p>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

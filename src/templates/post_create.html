@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<style>
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+</style>
+<div class="col-4 offset-4 mb-5 mt-5" >
+<h3>{{title}} an article</h3>
+
+{{form.media}}
+<form  method="POST" action="." enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form|crispy}}
+    <button type="submit" class="block">{{title}}</button>
+</form>
+    
+</div>
+
+{% endblock content %}
